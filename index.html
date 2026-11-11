@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FDRLauncher | Official Website</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --background: #090909;
+            --surface: #121212;
+            --gold: #c49a50;
+            --gold-light: #e0bb78;
+            --text: #f1f1f1;
+            --secondary: #888888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Background */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0.85)
+                ),
+                url("assets/background.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            z-index: -1;
+        }
+
+        /* Main Container */
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+
+        .header {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(900px, calc(100% - 50px));
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            animation: fadeDown 0.8s ease;
+        }
+
+        .brand {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            color: var(--secondary);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .status::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #65b77b;
+            box-shadow: 0 0 10px #65b77b;
+        }
+
+        /* Content */
+
+        .content {
+            width: 100%;
+            max-width: 540px;
+            text-align: center;
+        }
+
+        .hero {
+            animation: fadeUp 1s ease;
+        }
+
+        .decoration {
+            width: 65px;
+            height: 2px;
+            margin: 0 auto 28px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--gold),
+                transparent
+            );
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 8vw, 65px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1.1;
+
+            background: linear-gradient(
+                135deg,
+                #ffffff,
+                #c9c9c9 60%,
+                var(--gold)
+            );
+
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            margin-top: 17px;
+            color: var(--secondary);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .description {
+            max-width: 390px;
+            margin: 35px auto 42px;
+
+            color: #999999;
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        /* Buttons */
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            animation: fadeUp 1.2s ease;
+        }
+
+        .button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 13px;
+
+            min-height: 58px;
+            padding: 17px 25px;
+
+            border: 1px solid rgba(196, 154, 80, 0.35);
+            border-radius: 5px;
+
+            background: rgba(196, 154, 80, 0.08);
+            color: var(--gold-light);
+
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .button.primary {
+            background: var(--gold);
+            color: #111111;
+            border-color: var(--gold);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            border-color: var(--gold-light);
+            box-shadow: 0 8px 30px rgba(196, 154, 80, 0.15);
+        }
+
+        .button.primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 8px 35px rgba(196, 154, 80, 0.25);
+        }
+
+        .button span {
+            font-size: 17px;
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover span {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+
+        .footer {
+            position: absolute;
+            bottom: 30px;
+
+            width: 100%;
+            text-align: center;
+
+            color: #555555;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2px;
+
+            animation: fadeUp 1.4s ease;
+        }
+
+        .footer span {
+            color: var(--gold);
+        }
+
+        /* Animations */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        /* Responsive */
+
+        @media (max-width: 600px) {
+            .header {
+                top: 25px;
+            }
+
+            .brand {
+                font-size: 11px;
+                letter-spacing: 2px;
+            }
+
+            .status {
+                font-size: 8px;
+                letter-spacing: 1px;
+            }
+
+            .description {
+                font-size: 12px;
+                margin: 28px auto 35px;
+            }
+
+            .footer {
+                bottom: 20px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-height: 650px) {
+            .container {
+                justify-content: flex-start;
+                padding-top: 120px;
+                padding-bottom: 75px;
+            }
+
+            .footer {
+                position: relative;
+                bottom: auto;
+                margin-top: 55px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="header">
+            <div class="brand">@MateusMG2010</div>
+            <div class="status">OFFICIAL WEBSITE</div>
+        </header>
+
+        <main class="content">
+
+            <section class="hero">
+
+                <div class="decoration"></div>
+
+                <div class="eyebrow">
+                    OFFICIAL PROJECT PAGE
+                </div>
+
+                <h1>FDRLauncher</h1>
+
+                <p class="subtitle">
+                    YOUR GATEWAY TO THE GAME
+                </p>
+
+                <p class="description">
+                    Welcome to the official FDRLauncher page.
+                    Access the game and explore the project
+                    through the links below.
+                </p>
+
+            </section>
+
+            <nav class="links">
+                <a
+                    href="https://gamejolt.com/games/FNAFDOOMRENOVATION/421549"
+                    class="button primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    DOWNLOAD GAME
+                    <span>↗</span>
+                </a>
+
+                <a
+                    href="https://github.com/MateusMG2010/FDRLauncher"
+                    class="button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GITHUB REPOSITORY
+                    <span>↗</span>
+                </a>
+
+            </nav>
+
+        </main>
+
+        <footer class="footer">
+            Game by <span>Rapappa The Pepper</span><br><br>
+            Launcher by <span>MateusMG2010</span>
+        </footer>
+
+    </div>
+</body>
+</html>
